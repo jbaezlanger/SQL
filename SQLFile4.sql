@@ -1,10 +1,3 @@
-SELECT 
-    f.fabricante_cod,
-    f.plazo_entrega
-FROM fabricantes f
-WHERE f.provincia_cod <> 'BA'
-AND f.plazo_entrega <= ALL (
-    SELECT f2.plazo_entrega
-    FROM fabricantes f2
-    WHERE f2.provincia_cod = 'BA'
-);
+SELECT fabricante_cod, tiempo_entrega FROM fabricantes
+WHERE provincia_cod = 'BA' 
+AND tiempo_entrega <= ALL(SELECT tiempo_entrega FROM fabricantes WHERE provincia_cod= 'BA' AND tiempo_entrega IS NOT NULL);

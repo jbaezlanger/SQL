@@ -1,12 +1,12 @@
-SELECT 
-    p.producto_cod,
-    p.producto_desc
-FROM productos p
-JOIN (
-    SELECT 
-        producto_cod,
-        SUM(cantidad) AS total_vendido
-    FROM detalle_facturas
-    GROUP BY producto_cod
-) v ON p.producto_cod = v.producto_cod
-WHERE v.total_vendido > 150;
+SELECT p.producto_cod, p.producto_desc
+
+FROM Productos p join (SELECT producto_cod, sum(cantidad) cantidad
+
+						FROM facturas_det
+
+						GROUP BY producto_cod
+
+						HAVING sum(cantidad)>150) f
+
+				ON p.producto_cod = f.producto_cod;
+ 

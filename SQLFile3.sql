@@ -1,8 +1,3 @@
-SELECT 
-    p.*
-FROM provincias p
-WHERE NOT EXISTS (
-    SELECT 1
-    FROM fabricantes f
-    WHERE f.provincia_cod = p.provincia_cod
-);
+SELECT p.provincia_cod, p.provincia_desc 
+FROM provincias p LEFT JOIN Fabricantes f ON p.provincia_cod = f.provincia_cod
+			WHERE f.fabricante_cod IS NULL;
