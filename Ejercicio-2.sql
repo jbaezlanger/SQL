@@ -1,0 +1,1 @@
+SELECT * FROM facturas--Si quiero todas las factura, hago asi
